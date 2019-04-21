@@ -18,16 +18,16 @@
 //     }, 2000)
 // }
 
-// geocode('Philadelphia', data => {
-//     console.log(data)
+// geocode('Philadelphia', xxx => {
+//     console.log(xxx)
 // })
 
-// const add = (a, b, callback) => {
-//     setTimeout(() => {
-//         callback(a + b)
-//     }, 2000)
-// }
+const add = (a, b, callback) => {
+    setTimeout(() => {
+        callback(a + b)
+    }, 2000)
+}
 
-// add(1, 4, (sum) => {
-//     console.log(sum) // Should print: 5
-// })
+add(1, 4, sum => {
+    console.log(sum) // Should print: 5
+})
