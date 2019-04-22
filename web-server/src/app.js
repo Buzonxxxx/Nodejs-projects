@@ -1,39 +1,43 @@
-const path = require('path')
+const path = require("path");
 const express = require("express");
+const hbs = require("hbs");
 
 const app = express();
 
 // Defin paths for Express config
-const publicDirectoryPath = path.join(__dirname, "../public")
-const viewPaths = path.join(__dirname, "../views")
+const publicDirectoryPath = path.join(__dirname, "../public");
+const viewPath = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
 
 // Setup handlebars engine and views location
-app.set('view engine', 'hbs');
-app.set('views', viewPaths)
+app.set("view engine", "hbs");
+app.set("views", viewPath);
+hbs.registerPartials(partialsPath);
 
 // Setup static directory to serve
-app.use(express.static(publicDirectoryPath))
+app.use(express.static(publicDirectoryPath));
 
 app.get("", (req, res) => {
-  res.render('index', {
+  res.render("index", {
     title: "Weather App",
     name: "Louis"
-  })
-})
+  });
+});
 
 app.get("/about", (req, res) => {
-  res.render('about', {
+  res.render("about", {
     title: "About Me",
     name: "Louis"
-  })
-})
+  });
+});
 
 app.get("/help", (req, res) => {
-  res.render('help', {
+  res.render("help", {
     title: "Help",
+    name: "Louis",
     helpText: "This is some helpful text."
-  })
-})
+  });
+});
 
 app.get("/weather", (req, res) => {
   res.send({
@@ -45,4 +49,3 @@ app.get("/weather", (req, res) => {
 app.listen(3000, () => {
   console.log("server is up on port 3000");
 });
-
