@@ -20,21 +20,21 @@ app.use(express.static(publicDirectoryPath));
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather App",
-    name: "Louis"
+    name: "Louis Liao",
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About Me",
-    name: "Louis"
+    name: "Louis Liao",
   });
 });
 
 app.get("/help", (req, res) => {
   res.render("help", {
     title: "Help",
-    name: "Louis",
+    name: "Louis Liao",
     helpText: "This is some helpful text."
   });
 });
@@ -49,7 +49,7 @@ app.get("/weather", (req, res) => {
 app.get("/help/*", (req, res) => {
   res.render("404", {
     title: "404",
-    name: "Louis",
+    name: "Louis Liao",
     errorMessage: "Help artical not found"
   })
 });
@@ -57,7 +57,7 @@ app.get("/help/*", (req, res) => {
 app.get("*", (req, res) => {
   res.render("404", {
     title: "404",
-    name: "Louis",
+    name: "Louis Liao",
     errorMessage: "Page not found"
   })
 });
