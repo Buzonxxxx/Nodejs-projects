@@ -1,5 +1,4 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
+const { MongoClient, ObjectID } = require("mongodb");
 
 const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
@@ -11,9 +10,19 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
   const db = client.db(databaseName);
 
+  // db.collection("tasks").findOne({ _id: new ObjectID("5cc30fa8a86f3405c031eae1")}, (error, user) => {
+  //   if(error) console.log("Unable to fetch")
+  //   console.log(user)
+  // })
+
+  // db.collection("tasks").find({completed: false}).toArray((error, tasks) => {
+  //   if(error) console.log("Unable to fetch")
+  //   console.log(tasks)
+  // })
+
   // db.collection("users").insertOne({
-  //   name: "Louis",
-  //   age: 35
+  //   name: "Levi",
+  //   age: 0.5
   // }, (error, result) => {
   //   if(error) console.log("Unable to insert user")
 
@@ -21,30 +30,16 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
   // })
 
   // db.collection("users").insertMany([
-  //   {
-  //     name: "Jane",
-  //     age: 28
-
+  //   { 
+  //     name: "Anney",
+  //     age: 36
   //   }, {
-  //     name: "Gunther",
-  //     age: 33
+  //     name: "Annie",
+  //     age: 37
   //   }
   // ], (error, result) => {
-  //   if(error) console.log("Unable to insert user")
+  //   if(error) console.log("Unable to insert")
   //   console.log(result.ops)
   // })
-
-    db.collection('tasks').insertMany([
-      {
-        description: "Buy avengers tickets",
-        completed: false
-      }, {
-        description: "Drive to Mioli",
-        completed:  false
-      }
-    ], (error, result) => {
-      if(error) console.log("Unable to insert user")
-      console.log(result.ops);
-    })
 });
 
