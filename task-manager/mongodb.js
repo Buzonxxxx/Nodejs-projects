@@ -1,45 +1,54 @@
+// CRUD
+
+// insert, find, update, delete
+
 const { MongoClient, ObjectID } = require("mongodb");
 
 const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
 
-MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
-  if (error) console.log("Unable to connect to database!")
+MongoClient.connect(
+  connectionURL,
+  { useNewUrlParser: true },
+  (error, client) => {
+    if (error) console.log("Unable to connect to database!");
 
-  console.log("Connected correctly!")
+    console.log("Connected correctly!");
 
-  const db = client.db(databaseName);
+    const db = client.db(databaseName);
 
-  // db.collection("tasks").findOne({ _id: new ObjectID("5cc30fa8a86f3405c031eae1")}, (error, user) => {
-  //   if(error) console.log("Unable to fetch")
-  //   console.log(user)
-  // })
-
-  // db.collection("tasks").find({completed: false}).toArray((error, tasks) => {
-  //   if(error) console.log("Unable to fetch")
-  //   console.log(tasks)
-  // })
-
-  // db.collection("users").insertOne({
-  //   name: "Levi",
-  //   age: 0.5
-  // }, (error, result) => {
-  //   if(error) console.log("Unable to insert user")
-
-  //   console.log(result.ops)
-  // })
-
-  // db.collection("users").insertMany([
-  //   { 
-  //     name: "Anney",
-  //     age: 36
-  //   }, {
-  //     name: "Annie",
-  //     age: 37
-  //   }
-  // ], (error, result) => {
-  //   if(error) console.log("Unable to insert")
-  //   console.log(result.ops)
-  // })
-});
-
+    db.collection("tasks").updateMany(
+      {
+        completed: false
+      },
+      {
+        $set: {
+          completed: true
+        }
+      }
+    )
+    .then(result => {
+      console.log(result.modifiedCount)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    // db.collection("users")
+    //   .updateOne(
+    //     {
+    //       _id: new ObjectID("5cc3069753d6d1019be5fbe3")
+    //     },
+    //     {
+    //       $inc: {
+    //         age: 20
+    //       }
+    //     }
+    //   )
+    //   .then(user => {
+    //     console.log(user);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  }
+);

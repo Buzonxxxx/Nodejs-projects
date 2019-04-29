@@ -10,5 +10,5 @@ doWorkPromise
     console.log("Success!", result);
   })
   .catch(error => {
-    console.log(error);
+    console.log("Error: ", error);
   });
