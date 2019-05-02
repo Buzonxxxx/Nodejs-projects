@@ -17,22 +17,32 @@ MongoClient.connect(
 
     const db = client.db(databaseName);
 
-    db.collection("tasks").updateMany(
-      {
-        completed: false
-      },
-      {
-        $set: {
-          completed: true
-        }
-      }
-    )
+    db.collection("tasks").deleteOne({
+      description: "Drive to Mioli"
+    })
     .then(result => {
-      console.log(result.modifiedCount)
+      console.log(result.deletedCount)
     })
     .catch(error => {
       console.log(error)
     })
+    // db.collection("tasks")
+    //   .updateMany(
+    //     {
+    //       completed: true
+    //     },
+    //     {
+    //       $set: {
+    //         completed: false
+    //       }
+    //     }
+    //   )
+    //   .then(result => {
+    //     console.log(result.modifiedCount);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
     // db.collection("users")
     //   .updateOne(
     //     {
